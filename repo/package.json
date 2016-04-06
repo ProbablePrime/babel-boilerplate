@@ -2,20 +2,29 @@
 	"name": "",
 	"version": "",
 	"description": "",
-	"main": "./dist/index.js",
+	"main": "./index.js",
 	"scripts": {
-		"dev": "babel src --out-dir dist --presets es2015 --source-maps inline --watch",
-		"build": "babel src --out-dir dist --presets es2015 --source-maps inline",
-		"prepublish": "npm run build"
+		"dev": "babel src --out-dir dist --watch",
+		"build": "rm -rf dist && babel src --out-dir dist --watch",
+		"lint": "xo src",
+		"prepublish": "npm run lint && npm run build",
+		"test": "mocha test/unit --recursive --compilers js:babel-register && npm run lint"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "MIT",
 	"dependencies": {
-		"source-map-support": "^0.4.0"
+
 	},
 	"devDependencies": {
-		"babel-cli": "^6.6.5",
-		"babel-preset-es2015": "^6.6.0"
+		"babel-cli": "^6.5.1",
+		"babel-preset-es2015": "^6.6.0",
+		"babel-register": "^6.5.2",
+		"xo": "^0.13.0",
+		"mocha": "^2.3.2",
+		"chai": "^3.2.0"
+	},
+	"xo": {
+		"esnext": true
 	}
 }
